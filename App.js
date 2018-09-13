@@ -1,11 +1,12 @@
 import React from 'react'
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-client-preset'
+
 import ListPage from './components/ListPage'
 
 import { appStyles } from './components/styles/styles'
 
-const httpLink = new HttpLink({ uri: 'https://api.graph.cool/simple/v1/cjm00y2di1qua0182krj43qc3' })
+const httpLink = new HttpLink({ uri: process.env.API_URL })
 
 const client = new ApolloClient({
   link: httpLink,
