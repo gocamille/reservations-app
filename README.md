@@ -16,7 +16,7 @@ It uses [GraphQL](https://graphql.org/) and [Apollo](https://www.apollographql.c
 
 ## Next steps
 * Building Tests! Setting up component testing with [Jest](https://jestjs.io/) -- or even better, trying [Cypress](https://www.cypress.io/)
-* Integrating [Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/)
+* Integrating [Flow](https://flow.org/en/docs/react/) or [TypeScript](https://www.typescriptlang.org/)
 * Add more error handling for client-side validation
 * Update validation so it occurs on submit rather than on blur for batched validation
 * Refactoring fields so each one is a component wired to validation styles and actions
