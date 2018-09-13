@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import {
   View,
   TouchableHighlight,
-  ListView,
+  FlatList,
   Text
 } from 'react-native'
 
@@ -61,11 +61,11 @@ class ListPage extends React.Component {
           <CreatePage
             onComplete={this._getAllReservations} />
         </ModalTemplate>
-        <ListView
-          enableEmptySections
-          dataSource={dataSource}
-          renderRow={(reservation) => {
-            const { name, hotelName, arrivalDate } = reservation
+        <FlatList 
+          data={allReservations}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => {
+            const { name, hotelName, arrivalDate } = item
             const formattedDate = convertISO(arrivalDate)
 
             return (<Reservation
