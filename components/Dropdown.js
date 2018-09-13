@@ -5,28 +5,22 @@ import { Picker } from 'react-native'
 import { allHotelsQuery } from '../server/src/_query'
 
 class DropdownPickerTemplate extends React.Component {
-  state = {
-    hotelsData: []
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (!nextProps.allHotelsQuery.error) {
-      this.setState({
-        hotelsData: nextProps.allHotelsQuery.allHotels
-      })
-    }
-  }
-
   render () {
-    const { setHotelName, hotelName, allHotelsQuery: { loading } } = this.props
-    const { hotelsData } = this.state
+    const {
+      setHotelName,
+      hotelName,
+      allHotelsQuery: {
+        loading,
+        allHotels
+      }
+    } = this.props
 
     return (
       <Picker
         selectedValue={hotelName}
         onValueChange={setHotelName}>
-        {!loading ? hotelsData.map((hotel) => {
-          const { label, value, id } = hotel
+        {!loading ? allHotels.map((hotel) => {
+          const { value, id } = hotel
           return (<Picker.Item key={id} label={value} value={value} />)
         }) : null }
       </Picker>

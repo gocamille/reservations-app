@@ -19,17 +19,7 @@ import convertISO from '../utils/iso_date'
 
 class ListPage extends React.Component {
   state = {
-    dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
     modalVisible: false
-  }
-
-  componentWillReceiveProps (nextProps) {
-    if (!nextProps.allReservationsQuery.loading && !nextProps.allReservationsQuery.error) {
-      const { dataSource } = this.state
-      this.setState({
-        dataSource: dataSource.cloneWithRows(nextProps.allReservationsQuery.allReservations)
-      })
-    }
   }
 
   _getAllReservations = () => {
@@ -44,8 +34,13 @@ class ListPage extends React.Component {
   render () {
     const {
       modalVisible,
-      dataSource
     } = this.state
+    const {
+      allReservationsQuery: {
+        loading,
+        allReservations
+      }
+    } = this.props
     const {
       container,
       title,
@@ -53,7 +48,7 @@ class ListPage extends React.Component {
       createReservationButton
     } = listStyles
 
-    if (this.props.allReservationsQuery.loading) {
+    if (loading) {
       return (<Loader />)
     }
 
