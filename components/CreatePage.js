@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { graphql } from 'react-apollo'
 import { 
   View, 
@@ -20,29 +20,12 @@ class CreatePage extends React.Component {
   state = {
     name: '',
     hotelName: '',
-    arrivalDate: '',
-    departureDate: ''
-  }
-
-  // error handling subscription via validatejs
-  register() {
-    const { 
-      name,
-      hotelName,
-      arrivalDate,
-      departureDate
-    } = this.state
-    const nameError = validate('name', name)
-    const hotelNameError = validate('hotelName', hotelName)
-    const arrivalDateError = validate('arrivalDate', arrivalDate)
-    const departureDateError = validate('departureDate', departureDate)
-
-    this.setState({
-      nameError,
-      hotelNameError,
-      arrivalDateError,
-      departureDateError
-    })
+    arrivalDate: new Date,
+    departureDate: new Date,
+    nameError: '',
+    hotelNameError: '',
+    arrivalDateError: '',
+    departureDateError: ''
   }
 
   _setDate = (date, mode) => {
